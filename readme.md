@@ -20,12 +20,14 @@ cp config/database.php.dist config/database.php
 
 #####Configure App
 
-Set the application debug mode to true in `app.php` at line `16`
+Set the application debug mode to true in `app.php`
 And set your local project base url too
-```php
+```
+#!php
 return [
 	...
 	'debug' => env('APP_DEBUG', true),
+	...
 	'url' => 'http://localhost',
 	...
 ]
@@ -35,7 +37,8 @@ return [
 
 Create your local database
 Set your database informations in `database.php`
-```php
+```
+#!php
 'mysql' => [
     'driver'    => 'mysql',
     'host'      => env('DB_HOST', 'localhost'),
