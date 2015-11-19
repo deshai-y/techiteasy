@@ -1,5 +1,14 @@
 #Tech'IT easy
 
+##Server Requirements
+
+* PHP >= 5.5.9
+* OpenSSL PHP Extension
+* PDO PHP Extension
+* Mbstring PHP Extension
+* Tokenizer PHP Extension
+* MySQL
+
 ##Installation
 
 Clone the repository
@@ -7,11 +16,11 @@ Clone the repository
 git clone git@bitbucket.org:PNEXTIA/techiteasy.git
 ```
 
-Run `composer install` to get all vendors
+Run `composer install` to setup all vendors
 
 ##Configuration
 
-Check if `config/app.php` and `config/database.php` exists
+Check if `config/app.php` and `config/database.php` already exists
 
 If not, create them from the `.dist` files
 ```
