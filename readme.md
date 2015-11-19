@@ -63,6 +63,14 @@ Set mysql parameters in `database.php` with your localhost database informations
 
 Then run the database migration with the command `php artisan migrate`
 
+##Informations
+
+###Default admin access
+
+login : `admin`
+
+password : `toor`
+
 ##About Laravel
 
 ### Laravel PHP Framework
