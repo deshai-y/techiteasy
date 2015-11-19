@@ -63,6 +63,8 @@ Set mysql parameters in `database.php` with your localhost database informations
 
 Then run the database migration with the command `php artisan migrate`
 
+Last step run the seed of the database with `php artisan db:seed`
+
 ##Informations
 
 ###Default admin access
