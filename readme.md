@@ -80,10 +80,10 @@ Last step run the seed of the database with `php artisan db:seed`
 
 This is **VERY IMPORTANT**, please read this before start to work on the project : 
 
-* <a href="https://github.com/php-fig/fig-standards/blob/master/accepted/PSR-0.md" target="_blank">PSR-0 - Autoloading standard</a>
-* <a href="https://github.com/php-fig/fig-standards/blob/master/accepted/PSR-1-basic-coding-standard.md" target="_blank">PSR-1 - Basic coding standard</a>
-* <a href="https://github.com/php-fig/fig-standards/blob/master/accepted/PSR-2-coding-style-guide.md" target="_blank">PSR-2 - Coding style guide</a>
-* <a href="https://github.com/php-fig/fig-standards/blob/master/accepted/PSR-4-autoloader.md" target="_blank">PSR-4 - Autoloader</a>
+* [PSR-0 - Autoloading standard](https://github.com/php-fig/fig-standards/blob/master/accepted/PSR-0.md)
+* [PSR-1 - Basic coding standard](https://github.com/php-fig/fig-standards/blob/master/accepted/PSR-1-basic-coding-standard.md)
+* [PSR-2 - Coding style guide](https://github.com/php-fig/fig-standards/blob/master/accepted/PSR-2-coding-style-guide.md)
+* [PSR-4 - Autoloader](https://github.com/php-fig/fig-standards/blob/master/accepted/PSR-4-autoloader.md)
 
 **TL;DR ???** Just take a look at **PSR-1** and **PSR-2**... 
 
