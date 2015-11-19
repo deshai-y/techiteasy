@@ -39,6 +39,10 @@ return [
 #####Configure Database
 
 Create your local database
+```
+#!sql
+mysql> CREATE DATABASE `techiteasy`;
+```
 
 Set your database informations in `database.php`
 ```
@@ -46,9 +50,9 @@ Set your database informations in `database.php`
 <?php
 'mysql' => [
     'driver'    => 'mysql',
-    'host'      => env('DB_HOST', 'localhost'),
-    'database'  => env('DB_DATABASE', 'forge'),
-    'username'  => env('DB_USERNAME', 'forge'),
+    'host'      => env('DB_HOST', 'techiteasy'),
+    'database'  => env('DB_DATABASE', 'root'),
+    'username'  => env('DB_USERNAME', 'mySup3rP455w0rd'),
     'password'  => env('DB_PASSWORD', ''),
     'charset'   => 'utf8',
     'collation' => 'utf8_unicode_ci',
