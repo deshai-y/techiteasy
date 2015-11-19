@@ -76,6 +76,15 @@ Last step run the seed of the database with `php artisan db:seed`
 
 ##Informations
 
+###Good practices
+
+This is **VERY IMPORTANT**, please read this before start to work on the project : 
+
+* [PSR-1 - Autoloading standard](https://github.com/php-fig/fig-standards/blob/master/accepted/PSR-0.md)
+* [PSR-1 - Basic coding standard](https://github.com/php-fig/fig-standards/blob/master/accepted/PSR-1-basic-coding-standard.md)
+* [PSR-2 - Coding style guide](https://github.com/php-fig/fig-standards/blob/master/accepted/PSR-2-coding-style-guide.md)
+* [PSR-4 - Autoloader](https://github.com/php-fig/fig-standards/blob/master/accepted/PSR-4-autoloader.md)
+
 ###Default admin access
 
 login : `admin`
