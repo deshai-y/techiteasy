@@ -44,7 +44,7 @@ Create your local database
 mysql> CREATE DATABASE `techiteasy`;
 ```
 
-Set your database informations in `database.php`
+Set mysql parameters in `database.php` with your localhost database informations
 ```
 #!php
 <?php
