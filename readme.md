@@ -13,7 +13,7 @@
 
 Clone the repository
 ```
-git clone git@bitbucket.org:PNEXTIA/techiteasy.git
+$ git clone git@bitbucket.org:PNEXTIA/techiteasy.git
 ```
 
 Run `composer install` to setup all vendors
@@ -24,8 +24,8 @@ Check if `config/app.php` and `config/database.php` already exists
 
 If not, create them from the `.dist` files
 ```
-cp config/app.php.dist config/app.php
-cp config/database.php.dist config/database.php
+$ cp config/app.php.dist config/app.php
+$ cp config/database.php.dist config/database.php
 ```
 
 #####Configure App
@@ -86,6 +86,19 @@ This is **VERY IMPORTANT**, please read this before start to work on the project
 * [PSR-4 - Autoloader](https://github.com/php-fig/fig-standards/blob/master/accepted/PSR-4-autoloader.md)
 
 **TL;DR ???** Just take a look at **PSR-1** and **PSR-2**... 
+
+####GIT 
+
+Read : [GitFlow](https://fr.atlassian.com/git/tutorials/comparing-workflows/gitflow-workflow)
+
+#####Branch naming
+
+Every new branch must start with it type. For example `my-new-super-post-form` isn't a good name, `feature/super-post-form` is better. It's most cleaner and practical to make filters.
+
+List all test branches :
+```
+$ git branch --list "feature/*"
+```
 
 ###Default backoffice admin access
 
