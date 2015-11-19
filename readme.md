@@ -12,6 +12,7 @@ Run `composer install` to get all vendors
 ##Configuration
 
 Check if `config/app.php` and `config/database.php` exists
+
 If not, create them from the `.dist` files
 ```
 cp config/app.php.dist config/app.php
@@ -21,6 +22,7 @@ cp config/database.php.dist config/database.php
 #####Configure App
 
 Set the application debug mode to true in `app.php`
+
 And set your local project base url too
 ```
 #!php
@@ -37,6 +39,7 @@ return [
 #####Configure Database
 
 Create your local database
+
 Set your database informations in `database.php`
 ```
 #!php
