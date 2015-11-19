@@ -95,9 +95,9 @@ Read : [GitFlow](https://fr.atlassian.com/git/tutorials/comparing-workflows/gitf
 
 Every new branch must start with it type. For example `my-new-super-post-form` isn't a good name, `feature/super-post-form` is better. It's most cleaner and practical to make filters.
 
-List all test branches :
+List all `test` branches :
 ```
-$ git branch --list "feature/*"
+$ git branch --list "test/*"
 ```
 
 ###Default backoffice admin access
