@@ -24,6 +24,7 @@ Set the application debug mode to true in `app.php`
 And set your local project base url too
 ```
 #!php
+<?php
 return [
 	...
 	'debug' => env('APP_DEBUG', true),
@@ -39,6 +40,7 @@ Create your local database
 Set your database informations in `database.php`
 ```
 #!php
+<?php
 'mysql' => [
     'driver'    => 'mysql',
     'host'      => env('DB_HOST', 'localhost'),
