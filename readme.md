@@ -1,6 +1,55 @@
 #Tech'IT easy
 
-##Install
+##Installation
+
+Clone the repository
+```
+git clone git@bitbucket.org:PNEXTIA/techiteasy.git
+```
+
+Run `composer install` to get all vendors
+
+##Configuration
+
+Check if `config/app.php` and `config/database.php` exists
+If not, create them from the `.dist` files
+```
+cp config/app.php.dist config/app.php
+cp config/database.php.dist config/database.php
+```
+
+#####Configure App
+
+Set the application debug mode to true in `app.php` at line `16`
+And set your local project base url too
+```php
+return [
+	...
+	'debug' => env('APP_DEBUG', true),
+	'url' => 'http://localhost',
+	...
+]
+```
+
+#####Configure Database
+
+Create your local database
+Set your database informations in `database.php`
+```php
+'mysql' => [
+    'driver'    => 'mysql',
+    'host'      => env('DB_HOST', 'localhost'),
+    'database'  => env('DB_DATABASE', 'forge'),
+    'username'  => env('DB_USERNAME', 'forge'),
+    'password'  => env('DB_PASSWORD', ''),
+    'charset'   => 'utf8',
+    'collation' => 'utf8_unicode_ci',
+    'prefix'    => '',
+    'strict'    => false,
+],
+```
+
+Then run the database migration with the command `php artisan migrate`
 
 ##About Laravel
 
