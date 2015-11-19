@@ -1,8 +1,8 @@
-/bootstrap/compiled.php
+bootstrap/compiled.php
 vendor/*
-/storage/logs
-/config/app.php
-/config/database.php
+storage/logs
+config/app.php
+config/database.php
 composer.phar
 composer.lock  # Remove this one after you create a project
 .env.*.php
