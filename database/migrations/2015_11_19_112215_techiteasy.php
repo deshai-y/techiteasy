@@ -48,8 +48,7 @@ class Techiteasy extends Migration
 		Schema::create('questionnaire_has_question', function (Blueprint $table) { 
             $table->integer('questionnaire_id')->unsigned();
 			$table->integer('question_id')->unsigned();
-			$table->primary('questionnaire_id');
-			$table->primary('question_id');
+			$table->primary(['questionnaire_id','question_id']);
 			$table->foreign('questionnaire_id')->references('id')->on('question');
 			$table->foreign('question_id')->references('id')->on('question');
 
