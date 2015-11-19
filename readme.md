@@ -53,16 +53,16 @@ Create your local database
 mysql> CREATE DATABASE `techiteasy`;
 ```
 
-Set mysql parameters in `database.php` with your localhost database informations
+Set mysql connection parameters in `database.php` with your localhost database informations
 ```
 #!php
 <?php
 'mysql' => [
     'driver'    => 'mysql',
-    'host'      => env('DB_HOST', 'techiteasy'),
-    'database'  => env('DB_DATABASE', 'root'),
-    'username'  => env('DB_USERNAME', 'mySup3rP455w0rd'),
-    'password'  => env('DB_PASSWORD', ''),
+    'host'      => env('DB_HOST', '127.0.0.1'),
+    'database'  => env('DB_DATABASE', 'techiteasy'),
+    'username'  => env('DB_USERNAME', 'root'),
+    'password'  => env('DB_PASSWORD', 'mySup3rP455w0rd'),
     'charset'   => 'utf8',
     'collation' => 'utf8_unicode_ci',
     'prefix'    => '',
