@@ -18,6 +18,35 @@ $ git clone git@bitbucket.org:PNEXTIA/techiteasy.git
 
 Run `composer install` to setup all vendors
 
+Next you must ensure that NodeJS is installed on your machine
+
+```
+$ node -v
+```
+If not you can download it [here](https://nodejs.org/en/download/)
+
+Install Gulp
+
+```
+$ npm install --global gulp
+```
+
+And run 
+
+```
+$ npm install
+```
+
+Then you can run Elixir
+
+```
+// Run all tasks...
+$ gulp
+
+// Run all tasks and minify all CSS and JavaScript...
+$ gulp --production
+```
+
 ##Configuration
 
 Check if `config/app.php` and `config/database.php` already exists

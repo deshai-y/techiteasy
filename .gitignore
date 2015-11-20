@@ -1,5 +1,6 @@
 bootstrap/compiled.php
 vendor/*
+node_modules/*
 storage/logs
 config/app.php
 config/database.php
