@@ -16,6 +16,8 @@ class Techiteasy extends Migration
             $table->increments('id');
             $table->string('login','255');
             $table->string('password','255');
+            $table->rememberToken();
+            $table->timestamps();
         });
 		
 		Schema::create('questionnaire', function (Blueprint $table) {

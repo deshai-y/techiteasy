@@ -18,3 +18,28 @@ Route::get('/', [
 Route::get('/login', [
 	'as' => 'login', 'uses' => 'HomeController@login'
 ]);
+
+
+/*
+|--------------------------------------------------------------------------
+| Authentication Routes
+|--------------------------------------------------------------------------
+*/
+
+Route::post('auth/login', 'Auth\AuthController@authenticate');
+
+Route::get('auth/logout', 'Auth\AuthController@getLogout');
+
+/*
+|--------------------------------------------------------------------------
+| Admin Routes
+|--------------------------------------------------------------------------
+*/
+
+Route::group(['prefix' => 'admin', 'middleware' => 'auth'], function () {
+
+	Route::get('/', [
+		'as' => 'dashboard', 'uses' => 'Admin\AdminController@dashboard'
+	]);
+
+});
