@@ -14,3 +14,7 @@
 Route::get('/', [
     'as' => 'welcome', 'uses' => 'HomeController@welcome'
 ]);
+
+Route::get('/login', [
+	'as' => 'login', 'uses' => 'HomeController@login'
+]);
