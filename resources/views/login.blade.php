@@ -23,7 +23,7 @@
                 {!! Form::open(array('url' => '/auth/login', 'method' => 'post')) !!}
                     <fieldset>
                         <div class="form-group">
-                            {!! Form::text('login', Input::old('login'), array('class' => 'form-control', 'placeholder' => 'Login', 'autofocus')) !!}
+                            {!! Form::text('login', old('login'), array('class' => 'form-control', 'placeholder' => 'Login', 'autofocus')) !!}
                         </div>
                         <div class="form-group">
                             {!! Form::password('password', array('class' => 'form-control', 'placeholder' => 'Password')) !!}
