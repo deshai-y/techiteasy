@@ -21,8 +21,7 @@ body {
   overflow-x: hidden;
   overflow-y: auto;
   /* Scrollable contents if viewport is shorter than content. */
-  background-color: #f5f5f5;
-  border-right: 1px solid #eee; }
+  background-color: #f5f5f5; }
 
 .nav-sidebar {
   margin-right: -21px;
@@ -46,6 +45,8 @@ body {
 */
 .main {
   padding: 20px 40px; }
+  .main .page-header {
+    margin-top: 0; }
 
 .admin-content {
   background: #fff;
@@ -53,9 +54,6 @@ body {
   min-height: 250px;
   overflow: hidden;
   padding: 20px 30px; }
-
-.main .page-header {
-  margin-top: 0; }
 
 /*
 	FOOTER

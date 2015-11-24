@@ -5,7 +5,7 @@
 @section('page', $page)
 
 @section('content')
-<h1 class="page-header">Catégories</h1>
+<h1 class="page-header"><i class="fa fa-bookmark"></i> Catégories</h1>
 <table class="table table-striped">
 	<thead>
 		<tr>
