@@ -42,4 +42,6 @@ Route::group(['prefix' => 'admin', 'middleware' => 'auth'], function () {
 		'as' => 'dashboard', 'uses' => 'Admin\AdminController@dashboard'
 	]);
 
+	Route::resource('category', 'Admin\CategoryController', ['except' => ['show']]);
+
 });

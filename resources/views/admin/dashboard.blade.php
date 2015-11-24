@@ -1,9 +1,7 @@
 @extends('layouts.admin')
 
-@section('title', 'Administration')
+@section('title', 'Dashboard')
 
 @section('content')
-<div class="row">
-admin
-</div>
+<h1 class="page-header">Dashboard</h1>
 @endsection

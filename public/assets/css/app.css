@@ -32,13 +32,14 @@ body {
 
 .nav-sidebar > li > a {
   padding-right: 20px;
-  padding-left: 20px; }
+  padding-left: 20px;
+  color: #ef6b00; }
 
 .nav-sidebar > .active > a,
 .nav-sidebar > .active > a:hover,
 .nav-sidebar > .active > a:focus {
   color: #fff;
-  background-color: #428bca; }
+  background-color: #ef6b00; }
 
 /*
 	ADMIN
@@ -49,7 +50,12 @@ body {
 .admin-content {
   background: #fff;
   display: block;
-  min-height: 250px; }
+  min-height: 250px;
+  overflow: hidden;
+  padding: 20px 30px; }
+
+.main .page-header {
+  margin-top: 0; }
 
 /*
 	FOOTER
