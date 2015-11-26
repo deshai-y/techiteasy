@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Admin;
 
 use Illuminate\Http\Request;
+use Illuminate\Routing\Route;
 
 use App\Http\Requests;
 use App\Http\Controllers\Controller;
@@ -19,7 +20,7 @@ class CategoryController extends Controller
         $data = [
             'page' => "category",
         ];
-        return view('admin.category', $data);
+        return view('admin.category-index', $data);
     }
 
     /**
@@ -29,7 +30,9 @@ class CategoryController extends Controller
      */
     public function create()
     {
-        //
+        $page      = 'category';
+
+        return view('admin.category-create-update', compact('page'));
     }
 
     /**
