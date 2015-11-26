@@ -19,9 +19,13 @@
 		</tr>	
 	</thead>
 	<tbody>
+@foreach($categories as $category)
 		<tr>
+			<td>{{ $category->id }}</td>
+			<td>{{ $category->name }}</td>
 			<td>{{ $page }}</td>
 		</tr>
+@endforeach
 	</tbody>
 </table>
 @endsection
