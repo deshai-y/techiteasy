@@ -51,7 +51,7 @@ class CategoryController extends Controller
 
         if ($validator->fails()) {
             return redirect()
-                    ->route('admin.category.create');
+                    ->route('admin.category.create')
                     ->withErrors($validator)
                     ->withInput();
         }
@@ -61,7 +61,8 @@ class CategoryController extends Controller
         $category->name = $request->name;
         $category->save();
 
-        return redirect('admin.category.index')
+        return redirect()
+                ->route('admin.category.index') 
                 ->withSuccess('La catégorie a bien été enregistrée.');
     }
 
@@ -74,7 +75,7 @@ class CategoryController extends Controller
     public function edit($id)
     {
         $page     = 'category';
-        $category = Category::firstOrFail($id);
+        $category = Category::findOrFail($id);
 
         return view('admin.category-create-update', compact('page', 'category'));
     }
@@ -89,13 +90,13 @@ class CategoryController extends Controller
     public function update(Request $request, $id)
     {
         $page     = 'category';
-        $category = Category::firstOrFail($id);
+        $category = Category::findOrFail($id);
 
         $validator = $this->validator($request->all());
 
         if ($validator->fails()) {
             return redirect()
-                    ->route('admin.category.create');
+                    ->route('admin.category.create')
                     ->withErrors($validator)
                     ->withInput();
         }
@@ -103,7 +104,8 @@ class CategoryController extends Controller
         $category->name = $request->name;
         $category->save();
 
-        return redirect('admin.category.index')
+        return redirect()
+                ->route('admin.category.index')
                 ->withSuccess('La catégorie a bien été enregistrée.');
     }
 
@@ -119,7 +121,8 @@ class CategoryController extends Controller
 
         $category->delete();
 
-        return redirect('admin.category.index')
+        return redirect()
+                ->route('admin.category.index')
                 ->withSuccess('La catégorie a été supprimée.');
     }
 

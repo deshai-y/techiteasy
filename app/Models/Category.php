@@ -19,4 +19,9 @@ class Category extends Model
      * @var array
      */
     protected $fillable = ['id', 'name'];
+
+    /**
+     * Disable the table timestamps
+     */
+    public $timestamps = false;
 }

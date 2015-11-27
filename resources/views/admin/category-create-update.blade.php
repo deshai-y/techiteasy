@@ -1,6 +1,6 @@
 @extends('layouts.admin')
 
-@section('title', Route::getCurrentRoute()->getName() == 'admin.category.update' ? 'Modifier' : 'Ajouter' . ' une catégorie')
+@section('title', $category->id ? 'Modifier' : 'Ajouter' . ' une catégorie')
 
 @section('page', $page)
 
@@ -8,20 +8,16 @@
 <h1 class="page-header"><i class="fa fa-bookmark"></i> Catégories</h1>
 <ol class="breadcrumb">
 	<li><a href="{!! URL::previous() !!}"><i class="fa fa-arrow-circle-left"></i> Retour</a></li>
-	<li><a href="{!! route('admin.category.create') !!}"><i class="fa fa-plus-square"></i> Ajouter une catégorie</a></li>
 </ol>
-<table class="table table-striped">
-	<thead>
-		<tr>
-			<th>#</th>
-			<th>Nom</th>
-			<th>Actions</th>
-		</tr>	
-	</thead>
-	<tbody>
-		<tr>
-			<td></td>
-		</tr>
-	</tbody>
-</table>
+<div class="row">
+	<div class="col-md-6">
+		{!! Form::open(array('url' => $category->id ? URL::route('admin.category.update', $category->id) : URL::route('admin.category.store'), 'method' => $category->id ? 'put' : 'post')) !!}
+			<div class="form-group">
+				<label>Nom</label>
+				{!! Form::text('name', $category->name, array('class' => 'form-control', 'placeholder' => 'Nom', 'autofocus')) !!}
+			</div>
+			<button type="submit" class="btn btn-lg btn-extia btn-block">{!! $category->id ? 'Modifier <i class="fa fa-check"></i>' : 'Ajouter <i class="fa fa-plus"></i>' !!}</i></button>
+		{!! Form::close() !!}
+	</div>
+</div>
 @endsection

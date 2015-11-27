@@ -10,6 +10,26 @@
         @include('partials.header')
 
         <div class="container-fluid">
+            @if (count($errors) > 0)
+            <div class="alert alert-danger  alert-dismissible fade in" role="alert">
+                <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+                @foreach ($errors->all() as $error)
+                    {{ $error }}<br>
+                @endforeach
+            </div>
+            @endif
+            @if (isset($success) && count($success) > 0)
+            <div class="alert alert-success alert-dismissible fade in" role="alert">
+                <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+                @foreach ($success->all() as $s)
+                    {{ $s }}<br>
+                @endforeach
+            </div>
+            @endif
             <div class="row">
                 <div class="col-sm-3 col-md-2 sidebar">
                     @include('partials.sidebar', ['page' => $page])

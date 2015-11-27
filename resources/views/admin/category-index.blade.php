@@ -23,7 +23,10 @@
 		<tr>
 			<td>{{ $category->id }}</td>
 			<td>{{ $category->name }}</td>
-			<td>{{ $page }}</td>
+			<td>
+				<a href="{!! route('admin.category.edit', $category->id) !!}" class="btn btn-default btn-xs" title="Éditer la catégorie"><i class="fa fa-pencil-square-o"></i></a>
+				<a href="" class="btn btn-default btn-xs" title="Supprimer la catégorie"><i class="fa fa-times"></i></a>
+			</td>
 		</tr>
 @endforeach
 	</tbody>
