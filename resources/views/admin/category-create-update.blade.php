@@ -10,6 +10,15 @@
 	<li><a href="{!! URL::previous() !!}"><i class="fa fa-arrow-circle-left"></i> Retour</a></li>
 </ol>
 <div class="row">
+	<div class="col-md-12">
+	@if($category->id)
+		<h2>Modifier la catégorie "<i>{{ $category->name}}</i>"</h2>
+	@else
+		<h2>Ajouter une catégorie</h2>
+	@endif
+	</div>
+</div>
+<div class="row">
 	<div class="col-md-6">
 		{!! Form::open(array('url' => $category->id ? URL::route('admin.category.update', $category->id) : URL::route('admin.category.store'), 'method' => $category->id ? 'put' : 'post')) !!}
 			<div class="form-group">

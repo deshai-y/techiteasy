@@ -5,9 +5,10 @@ body {
 }
 .navbar {
 	border: 0 !important;
+	z-index: 0;
 }
 .login-panel {
-    margin-top: 25%;
+    margin-top: 35%;
 }
 /*
 	SIDEBAR
@@ -125,7 +126,8 @@ body {
 .alert {
 	position: absolute;
 	width: 500px;
-	margin: 0 auto;
+	margin: 65px auto 0;
 	left: 0;
 	right: 0;
+	z-index: 50;
 }

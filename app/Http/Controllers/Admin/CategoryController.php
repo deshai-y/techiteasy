@@ -106,7 +106,7 @@ class CategoryController extends Controller
 
         return redirect()
                 ->route('admin.category.index')
-                ->withSuccess('La catégorie a bien été enregistrée.');
+                ->withSuccess('La catégorie a bien été modifiée.');
     }
 
     /**
