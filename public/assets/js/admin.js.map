@@ -1,1 +1,1 @@
-{"version":3,"sources":["admin.js"],"names":[],"mappings":"AAAA;AACA","file":"admin.js","sourcesContent":["var f = []; // global functions\nvar l = []; // events listeners"],"sourceRoot":"/source/"}
+{"version":3,"sources":["admin.js"],"names":[],"mappings":"AAAA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA","file":"admin.js","sourcesContent":["var f = []; // global functions\nvar l = []; // events listeners\n\n\nf.loadDeleteModal = function() {\n\n};\n\n$('#deleteModal').on('shown.bs.modal', f.loadDeleteModal);"],"sourceRoot":"/source/"}
