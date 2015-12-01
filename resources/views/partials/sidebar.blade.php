@@ -6,7 +6,7 @@
         <a href="{!! route('dashboard') !!}"><i class="fa fa-file-text"></i></i> Questionnaire</a>
     </li>
     <li{!! isset($page) && $page == 'question' ? ' class="active"' : '' !!}>
-        <a href="{!! route('dashboard') !!}"><i class="fa fa-question-circle"></i> Questions</a>
+        <a href="{!! route('admin.question.index') !!}"><i class="fa fa-question-circle"></i> Questions</a>
     </li>
     <li{!! isset($page) && $page == 'category' ? ' class="active"' : '' !!}>
         <a href="{!! route('admin.category.index') !!}"><i class="fa fa-bookmark"></i> Catégories</a>
