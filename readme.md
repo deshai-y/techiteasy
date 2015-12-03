@@ -160,6 +160,12 @@ The Laravel framework is open-sourced software licensed under the [MIT license](
 
 #### Command control
 
+use Git Bash
+
+```
+$ cd C:/wamp/www/teachiteasy
+```
+
 ```
 $ git checkout master     
 ```
