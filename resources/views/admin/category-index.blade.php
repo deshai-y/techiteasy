@@ -20,32 +20,34 @@
 	</thead>
 	<tbody>
 @foreach($categories as $category)
-		<tr>
+		<tr id="category-{{ $category->id }}">
 			<td>{{ $category->id }}</td>
 			<td>{{ $category->name }}</td>
 			<td>
 				<a href="{!! route('admin.category.edit', $category->id) !!}" class="btn btn-default btn-xs" title="Éditer la catégorie"><i class="fa fa-pencil-square-o"></i></a>
-				<a href="" class="btn btn-default btn-xs" title="Supprimer la catégorie"><i class="fa fa-times"></i></a>
+				<button class="btn btn-default btn-xs btn-delete-category" data-toggle="modal" data-target="#categoryDeleteModal" title="Supprimer la catégorie" data-id="{{ $category->id }}" data-urldelete="{!! route('admin.category.destroy', $category->id) !!}"><i class="fa fa-times"></i></button>
 			</td>
 		</tr>
 @endforeach
 	</tbody>
 </table>
 {!! $categories->render() !!}
-<div class="modal fade" tabindex="-1" role="dialog">
+<div id="categoryDeleteModal" class="modal fade" tabindex="-1" role="dialog">
 	<div class="modal-dialog">
     	<div class="modal-content">
-    		<div class="modal-header">
-        		<button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-        		<h4 class="modal-title">Supprimer <span></span></h4>
-      		</div>
-      		<div class="modal-body">
-        		<p>One fine body&hellip;</p>
-      		</div>
-      		<div class="modal-footer">
-        		<button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-        		<button type="button" class="btn btn-primary">Save changes</button>
-      		</div>
+    		{!! Form::open(array('url' => URL::route('admin.category.destroy', 0), 'method' => 'DELETE', 'id' => 'categoryDeleteForm')) !!}
+	    		<div class="modal-header">
+	        		<button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+	        		<h4 class="modal-title">Supprimer la catégorie "<span id="category-name-delete"></span>"</h4>
+	      		</div>
+	      		<div class="modal-body">
+	        		<p>Attention en supprimant cette catégorie toute les questions liées n'y seront plus attribuées. Êtes vous certain de de vouloir supprimer cette catégorie ?</p>
+	      		</div>
+	      		<div class="modal-footer">
+	        		<button type="button" class="btn btn-default" data-dismiss="modal">Annuler</button>
+	        		<button type="submit" class="btn btn-extia">Supprimer</button>
+	      		</div>
+	      	{!! Form::close() !!}
     	</div>
   	</div>
 </div>

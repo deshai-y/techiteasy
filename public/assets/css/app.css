@@ -3,7 +3,7 @@ body {
 
 .navbar {
   border: 0 !important;
-  z-index: 0; }
+  z-index: 1; }
 
 .login-panel {
   margin-top: 35%; }
@@ -55,7 +55,8 @@ body {
   display: block;
   min-height: 250px;
   overflow: hidden;
-  padding: 20px 30px; }
+  padding: 20px 30px;
+  z-index: 0; }
 
 /*
 	FOOTER
