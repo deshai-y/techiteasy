@@ -5,8 +5,8 @@ var l = []; // events listeners
 f.loadCategoryDeleteModal = function() {
 	var categoryId        = $(this).data('id');
 	var categoryUrlDelete = $(this).data('urldelete');
-	alert(categoryUrlDelete);
-	$('#categoryDeleteForm').attr('action', categoryUrlDelete);
+	$('#category-name-delete').html($('#category-name-' + categoryId).html());
+	$('#category-delete-form').attr('action', categoryUrlDelete);
 };
 
 $('.btn-delete-category').on('click', f.loadCategoryDeleteModal);

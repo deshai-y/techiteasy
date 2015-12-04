@@ -20,9 +20,9 @@
 	</thead>
 	<tbody>
 @foreach($categories as $category)
-		<tr id="category-{{ $category->id }}">
+		<tr>
 			<td>{{ $category->id }}</td>
-			<td>{{ $category->name }}</td>
+			<td id="category-name-{{ $category->id }}">{{ $category->name }}</td>
 			<td>
 				<a href="{!! route('admin.category.edit', $category->id) !!}" class="btn btn-default btn-xs" title="Éditer la catégorie"><i class="fa fa-pencil-square-o"></i></a>
 				<button class="btn btn-default btn-xs btn-delete-category" data-toggle="modal" data-target="#categoryDeleteModal" title="Supprimer la catégorie" data-id="{{ $category->id }}" data-urldelete="{!! route('admin.category.destroy', $category->id) !!}"><i class="fa fa-times"></i></button>
@@ -35,7 +35,7 @@
 <div id="categoryDeleteModal" class="modal fade" tabindex="-1" role="dialog">
 	<div class="modal-dialog">
     	<div class="modal-content">
-    		{!! Form::open(array('url' => URL::route('admin.category.destroy', 0), 'method' => 'DELETE', 'id' => 'categoryDeleteForm')) !!}
+    		{!! Form::open(array('url' => URL::route('admin.category.destroy', 0), 'method' => 'DELETE', 'id' => 'category-delete-form')) !!}
 	    		<div class="modal-header">
 	        		<button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
 	        		<h4 class="modal-title">Supprimer la catégorie "<span id="category-name-delete"></span>"</h4>

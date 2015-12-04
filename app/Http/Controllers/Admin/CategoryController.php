@@ -119,6 +119,10 @@ class CategoryController extends Controller
     {
         $category = Category::findOrFail($id);
 
+        DB::table('question')
+                ->where('category_id', $category->id)
+                ->update(['category_id' => 0]);
+
         $category->delete();
 
         return redirect()
