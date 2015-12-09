@@ -1,5 +1,14 @@
 $orange-extia: #ef6b00;
 
+@font-face {
+    font-family: norwester;
+    src: url(../fonts/norwester.otf);
+}
+@font-face {
+    font-family: quicksand;
+    src: url(../fonts/Quicksand-Regular.otf);
+}
+
 body {
 	background: url('../img/background.png');
 }
@@ -9,6 +18,32 @@ body {
 }
 .login-panel {
     margin-top: 35%;
+}
+/*
+	LOGO
+*/
+.logo-1 {
+	font-family: Roboto;
+	font-size: 20px;
+	color: #000;
+}
+.logo-2 {
+	color: $orange-extia;
+	font-family: Roboto;
+	font-weight: bold;
+	font-size: 21px;
+	letter-spacing: 2px;
+}
+.logo-3 {
+	font-weight: bold;
+	font-family: norwester;
+	color: #000;
+}
+.logo-4 {
+	color: $orange-extia;
+	font-family: quicksand;
+	font-weight: bold;
+	font-size: 21px;
 }
 /*
 	SIDEBAR

@@ -2,7 +2,7 @@
     <nav class="navbar navbar-default navbar-fixed-top">
         <div class="container-fluid">
             <div class="navbar-header">
-                <a class="navbar-brand" href="{{ route('welcome') }}">Tech'IT easy</a>
+                <a class="navbar-brand" href="{{ route('welcome') }}"><span class="logo-1">tech</span><span class="logo-2">'</span><span class="logo-3">IT</span> <span class="logo-4">easy</span></a>
             </div>
             
                 @if(Auth::check())
