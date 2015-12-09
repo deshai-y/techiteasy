@@ -28,7 +28,7 @@
                         <div class="form-group">
                             {!! Form::password('password', array('class' => 'form-control', 'placeholder' => 'Password')) !!}
                         </div>
-                        <input type="submit" class="btn btn-lg btn-extia btn-block" value="#yolo">
+                        <button type="submit" class="btn btn-lg btn-extia btn-block">Connection <i class="fa fa-rocket"></i></i></button>
                     </fieldset>
                 {!! Form::close() !!}
             </div>

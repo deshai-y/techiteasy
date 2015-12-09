@@ -2,10 +2,15 @@
 
 namespace App\Http\Controllers\Admin;
 
+use DB;
+use Validator;
 use Illuminate\Http\Request;
+use Illuminate\Routing\Route;
 
 use App\Http\Requests;
 use App\Http\Controllers\Controller;
+
+use App\Models\Category;
 
 class CategoryController extends Controller
 {
@@ -16,10 +21,10 @@ class CategoryController extends Controller
      */
     public function index()
     {
-        $data = [
-            'page' => "category",
-        ];
-        return view('admin.category', $data);
+        $page       = 'category';
+        $categories = Category::paginate(8);
+        
+        return view('admin.category-index', compact('page', 'categories'));
     }
 
     /**
@@ -29,7 +34,10 @@ class CategoryController extends Controller
      */
     public function create()
     {
-        //
+        $page     = 'category';
+        $category = new Category;
+
+        return view('admin.category-create-update', compact('page', 'category'));
     }
 
     /**
@@ -40,18 +48,23 @@ class CategoryController extends Controller
      */
     public function store(Request $request)
     {
-        //
-    }
+        $validator = $this->validator($request->all());
 
-    /**
-     * Display the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function show($id)
-    {
-        //
+        if ($validator->fails()) {
+            return redirect()
+                    ->route('admin.category.create')
+                    ->withErrors($validator)
+                    ->withInput();
+        }
+
+        $category = new Category;
+
+        $category->name = $request->name;
+        $category->save();
+
+        return redirect()
+                ->route('admin.category.index') 
+                ->withSuccess('La catégorie a bien été enregistrée.');
     }
 
     /**
@@ -62,7 +75,10 @@ class CategoryController extends Controller
      */
     public function edit($id)
     {
-        //
+        $page     = 'category';
+        $category = Category::findOrFail($id);
+
+        return view('admin.category-create-update', compact('page', 'category'));
     }
 
     /**
@@ -74,7 +90,24 @@ class CategoryController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $page     = 'category';
+        $category = Category::findOrFail($id);
+
+        $validator = $this->validator($request->all());
+
+        if ($validator->fails()) {
+            return redirect()
+                    ->route('admin.category.create')
+                    ->withErrors($validator)
+                    ->withInput();
+        }
+
+        $category->name = $request->name;
+        $category->save();
+
+        return redirect()
+                ->route('admin.category.index')
+                ->withSuccess('La catégorie a bien été modifiée.');
     }
 
     /**
@@ -85,6 +118,30 @@ class CategoryController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $category = Category::findOrFail($id);
+
+        DB::table('question')
+                ->where('category_id', $category->id)
+                ->update(['category_id' => 0]);
+
+        $category->delete();
+
+        return redirect()
+                ->route('admin.category.index')
+                ->withSuccess('La catégorie a été supprimée.');
     }
+
+    /**
+     * Get a validator for an incoming registration request.
+     *
+     * @param  array  $data
+     * @return \Illuminate\Contracts\Validation\Validator
+     */
+    protected function validator(array $data)
+    {
+        return Validator::make($data, [
+            'name' => 'required|max:255|min:4',
+        ]);
+    }
+
 }

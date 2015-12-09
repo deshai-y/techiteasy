@@ -5,9 +5,10 @@ body {
 }
 .navbar {
 	border: 0 !important;
+	z-index: 1;
 }
 .login-panel {
-    margin-top: 25%;
+    margin-top: 35%;
 }
 /*
 	SIDEBAR
@@ -127,16 +128,4 @@ body {
 	margin: 0 auto;
 	left: 0;
 	right: 0;
-}
-
-/* /admin/Question Page */
-.question-badge{
-    color:#ef6b00;
-    margin-left: 10px;
-}
-
-/* /admin/reponse Page */
-
-.margin-bottom{
-    margin-bottom: 1em;
 }
