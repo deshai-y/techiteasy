@@ -26,7 +26,7 @@
             <td>{{ $question->level }}</td>
             <td>
                 <a class="question-badge suppression-badge" href="#" data-url="{!! route('admin.question.destroy', $question->id) !!}" data-toggle="modal" data-target="#modalSup"><i class="fa fa-times"></i></a>
-                <a class="question-badge edition-badge" href="#" value="{{ $question->id }}" data-toggle="modal" data-target="#modalEdit"><i class="fa fa-pencil-square-o"></i></a>
+                <a class="question-badge edition-badge" href="{!! route('admin.question.edit', $question->id) !!}" value="{{ $question->id }}" ><i class="fa fa-pencil-square-o"></i></a>
             </td>
         </tr>
         @endforeach
