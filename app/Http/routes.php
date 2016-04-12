@@ -19,6 +19,13 @@ Route::get('/login', [
     'as' => 'login', 'uses' => 'HomeController@login'
 ]);
 
+Route::get('index', [
+    'as' => 'index', 'uses' => 'HomeController@index'
+]);
+
+Route::get('questionnaire/{id}/launch', [
+    'as' => 'questionnaire.launch', 'uses' => 'HomeController@launch'
+]);
 
 /*
   |--------------------------------------------------------------------------
@@ -29,6 +36,8 @@ Route::get('/login', [
 Route::post('auth/login', 'Auth\AuthController@authenticate');
 
 Route::get('auth/logout', 'Auth\AuthController@getLogout');
+
+Route::post('/login', 'HomeController@authenticate');
 
 /*
   |--------------------------------------------------------------------------
@@ -46,6 +55,8 @@ Route::group(['prefix' => 'admin', 'middleware' => 'auth'], function () {
 
     Route::resource('question', 'Admin\QuestionController');
     Route::resource('reponse', 'Admin\ReponseController');
+    Route::resource('questionnaire', 'Admin\QuestionnaireController');
 
     Route::post('question/{id}/test', 'Admin\QuestionController@testQuestion');
 });
+

@@ -12,6 +12,7 @@ class Question extends Model
      * @var string
      */
     protected $table = 'question';
+    public $timestamps = false;
     
     
 }

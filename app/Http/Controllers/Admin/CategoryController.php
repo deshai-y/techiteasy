@@ -140,7 +140,7 @@ class CategoryController extends Controller
     protected function validator(array $data)
     {
         return Validator::make($data, [
-            'name' => 'required|max:255|min:4',
+            'name' => 'required|max:255|min:4'
         ]);
     }
 
