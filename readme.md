@@ -175,3 +175,9 @@ move on branches
 $ git pull origin master
 ```
 update branches
+
+when somebody write on database we need to migrate PHP like : 
+
+```
+$ php artisan migrat
+```
