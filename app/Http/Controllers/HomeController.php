@@ -45,7 +45,7 @@ class HomeController extends Controller
     public function launch($id){
 
         //$category = Category::findOrFail($id);
-      
+       $aQuestionnaire = array();
         $questions = DB::table('question as q')
                 ->select('question_id', 'q.label as question_label' , 'q.description as description_label', 'a.label as answer_label', 'a.id as answer_id', 'a.verify as verify')
                 ->join('questionnaire_has_category as qhc', 'qhc.category_id', '=', 'q.category_id')
@@ -57,7 +57,7 @@ class HomeController extends Controller
         $aQuestions = array();
         foreach ($questions as $key => $value) {
             //echo "  ".$value["question_id"];
-            $aQuestionnaire[$value["question_id"]] = array ("id"=>$value["question_id"], "label"=>$value["question_label"] , "description"=>$value["description_label"], "answers"=>array());
+            $aQuestionnaire[$value["question_id"]] = array ("questionnaire_id" =>  $id, "id"=>$value["question_id"], "label"=>$value["question_label"] , "description"=>$value["description_label"], "answers"=>array());
             # code...
         }
         foreach ($questions as $key => $value) {
@@ -65,11 +65,9 @@ class HomeController extends Controller
             array_push($aQuestionnaire[$value["question_id"]]["answers"],array('label'=>$value["answer_label"], 'id'=>$value["answer_id"], "verify"=>$value["verify"] ));
             # code...
         }
-        
+    
 
          return view('launch', compact('aQuestionnaire')); // May use compact
-
-      
     }
      protected function object_to_array($obj) {
         if(is_object($obj)) $obj = (array) $obj;
@@ -82,6 +80,41 @@ class HomeController extends Controller
         else $new = $obj;
 
         return $new;       
+    }
+    public function valider(){
+
+         if(isset($_POST["questionnaire_id"])){
+             $answers = DB::table('answer')
+                ->select('answer.*')
+                ->join('question', 'answer.question_id', '=', 'question.id')
+                ->join('questionnaire_has_category', 'questionnaire_has_category.category_id', '=', 'question.category_id')              
+                ->where('questionnaire_has_category.questionnaire_id', $_POST["questionnaire_id"])
+                ->get();;
+        
+            $answers = $this->object_to_array($answers);
+            $iCorrect= 0;
+            $iKO=0;
+            foreach ($answers as $key => $value) {
+               if(isset($_POST[$value["id"]])){
+                    if($_POST[$value["id"]] == $value["verify"])
+                       $iCorrect++;
+                    else{
+                        $iKO++;
+                    } 
+                }
+            } 
+            
+            $sujet = "Résultat du questionnaire du candidat: ".session('lastName')." ".session('firstName'); 
+            $message = $iCorrect. " réponses correctes, et ".$iKO." réponses incorrectes.";
+            
+            mail(session('email'),$sujet,$message);
+
+            return redirect()->action('HomeController@welcome'); 
+        }
+        else{
+            //probleme lors du traitment
+            return redirect()->action('HomeController@index');  
+        }       
     }
 
 }

@@ -27,6 +27,8 @@ Route::get('questionnaire/{id}/launch', [
     'as' => 'questionnaire.launch', 'uses' => 'HomeController@launch'
 ]);
 
+
+Route::post('valider', 'HomeController@valider');
 /*
   |--------------------------------------------------------------------------
   | Authentication Routes

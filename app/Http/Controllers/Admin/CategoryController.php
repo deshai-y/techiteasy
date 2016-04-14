@@ -120,12 +120,11 @@ class CategoryController extends Controller
     {
         $category = Category::findOrFail($id);
 
-        DB::table('question')
-                ->where('category_id', $category->id)
-                ->update(['category_id' => 0]);
+        DB::table('question')->where('category_id', '=', $id)->delete();
+        DB::table('questionnaire_has_category')->where('category_id', '=', $id)->delete();
+        DB::table('category')->where('id', '=', $id)->delete();
 
-        $category->delete();
-
+       
         return redirect()
                 ->route('admin.category.index')
                 ->withSuccess('La catégorie a été supprimée.');
