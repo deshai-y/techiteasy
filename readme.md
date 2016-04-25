@@ -1,6 +1,8 @@
-#Tech'IT easy
+Tech'IT easy
+============
 
-##Server Requirements
+Server Requirements
+-------------------
 
 * PHP >= 5.5.9
 * OpenSSL PHP Extension
@@ -9,7 +11,8 @@
 * Tokenizer PHP Extension
 * MySQL
 
-##Installation
+Installation
+=============
 
 Clone the repository
 ```
@@ -31,7 +34,7 @@ Install Gulp
 $ npm install --global gulp
 ```
 
-And run 
+And run
 
 ```
 $ npm install
@@ -47,34 +50,23 @@ $ gulp
 $ gulp --production
 ```
 
-##Configuration
+Configuration
+=============
 
-Check if `config/app.php` and `config/database.php` already exists
+Check if `.env` already exists
 
-If not, create them from the `.dist` files
-```
-$ cp config/app.php.dist config/app.php
-$ cp config/database.php.dist config/database.php
-```
+If not, create them from the `.env.example` files
 
-#####Configure App
+### Configure App
 
-Set the application debug mode to true in `app.php`
+Set the application debug mode to true in `.env`
 
 And set your local project base url too
 ```
-#!php
-<?php
-return [
-	...
-	'debug' => env('APP_DEBUG', true),
-	...
-	'url' => 'http://localhost',
-	...
-]
+APP_DEBUG=true
 ```
 
-#####Configure Database
+### Configure Database
 
 Create your local database
 ```
@@ -82,45 +74,37 @@ Create your local database
 mysql> CREATE DATABASE `techiteasy`;
 ```
 
-Set mysql connection parameters in `database.php` with your localhost database informations
+Set mysql connection parameters in `.env` with your localhost database informations
 ```
-#!php
-<?php
-'mysql' => [
-    'driver'    => 'mysql',
-    'host'      => env('DB_HOST', '127.0.0.1'),
-    'database'  => env('DB_DATABASE', 'techiteasy'),
-    'username'  => env('DB_USERNAME', 'root'),
-    'password'  => env('DB_PASSWORD', 'mySup3rP455w0rd'),
-    'charset'   => 'utf8',
-    'collation' => 'utf8_unicode_ci',
-    'prefix'    => '',
-    'strict'    => false,
-],
+DB_HOST=127.0.0.1
+DB_PORT=3306
+DB_DATABASE=techiteasy
+DB_USERNAME=root
+DB_PASSWORD=root
 ```
-
 Then run the database migration with the command `php artisan migrate`
 
 Last step run the seed of the database with `php artisan db:seed`
 
-##Informations
+Informations
+-------------
 
-###Good practices
+### Good practices
 
-This is **VERY IMPORTANT**, please read this before start to work on the project : 
+This is **VERY IMPORTANT**, please read this before start to work on the project :
 
 * [PSR-0 - Autoloading standard](https://github.com/php-fig/fig-standards/blob/master/accepted/PSR-0.md)
 * [PSR-1 - Basic coding standard](https://github.com/php-fig/fig-standards/blob/master/accepted/PSR-1-basic-coding-standard.md)
 * [PSR-2 - Coding style guide](https://github.com/php-fig/fig-standards/blob/master/accepted/PSR-2-coding-style-guide.md)
 * [PSR-4 - Autoloader](https://github.com/php-fig/fig-standards/blob/master/accepted/PSR-4-autoloader.md)
 
-**TL;DR ???** Just take a look at **PSR-1** and **PSR-2**... 
+**TL;DR ???** Just take a look at **PSR-1** and **PSR-2**...
 
-####GIT 
+#### GIT
 
 Read : [GitFlow](https://fr.atlassian.com/git/tutorials/comparing-workflows/gitflow-workflow)
 
-#####Branch naming
+##### Branch naming
 
 Every new branch must start with it type. For example `my-new-super-post-form` isn't a good name, `feature/super-post-form` is better. It's most cleaner and practical to make filters.
 
@@ -129,7 +113,7 @@ List all `test` branches :
 $ git branch --list "test/*"
 ```
 
-###Default backoffice admin access
+### Default backoffice admin access
 
 login : `admin`
 
@@ -167,7 +151,7 @@ $ cd C:/wamp/www/techiteasy
 ```
 
 ```
-$ git checkout master     
+$ git checkout master
 ```
 move on branches
 
@@ -176,8 +160,8 @@ $ git pull origin master
 ```
 update branches
 
-when somebody write on database we need to migrate PHP like : 
+when somebody write on database we need to migrate PHP like :
 
 ```
-$ php artisan migrat
+$ php artisan migrate
 ```

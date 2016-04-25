@@ -19,7 +19,6 @@ class CascadeDeleteAnswer extends Migration
             ->references('id')->on('question')
             ->onDelete('cascade');
         });
-        $this->command->info('Foreign key updated');
     }
 
     /**
