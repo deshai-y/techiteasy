@@ -121,4 +121,6 @@ return [
 
     'pretend' => env('MAIL_PRETEND'),
 
+    'from' => env('MAIL_FROM'),
+
 ];

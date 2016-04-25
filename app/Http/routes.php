@@ -62,3 +62,6 @@ Route::group(['prefix' => 'admin', 'middleware' => 'auth'], function () {
     Route::post('question/{id}/test', 'Admin\QuestionController@testQuestion');
 });
 
+Route::get('democlass', function(){
+
+});
