@@ -19,5 +19,12 @@
         
         {!! Html::script('assets/js/jquery-2.1.4.min.js') !!}
         {!! Html::script('assets/js/bootstrap.min.js') !!}
+        {!! Html::script('assets/noty-2.3.8/js/noty/packaged/jquery.noty.packaged.min.js') !!}
+        {!! Html::script('assets/noty-2.3.8/js/noty/themes/bootstrap.js') !!}
+        {!! Html::script('assets/js/noty.js') !!}
+
+        <script type="text/javascript">
+            @yield('script')
+        </script>
     </body>
 </html>

@@ -2,8 +2,6 @@ bootstrap/compiled.php
 vendor/*
 node_modules/*
 storage/logs
-config/app.php
-config/database.php
 composer.phar
 composer.lock  # Remove this one after you create a project
 .env.*.php
@@ -11,3 +9,5 @@ composer.lock  # Remove this one after you create a project
 .DS_Store
 Thumbs.db
 /nbproject/private/
+/.idea
+/.env
