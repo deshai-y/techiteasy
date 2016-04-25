@@ -1,21 +1,21 @@
 <div id="header">
-    <nav class="navbar navbar-default">
+    <nav class="navbar navbar-default navbar-fixed-top">
         <div class="container-fluid">
             <div class="navbar-header">
-                <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
-                    <span class="sr-only">Toggle navigation</span>
-                    <span class="icon-bar"></span>
-                    <span class="icon-bar"></span>
-                    <span class="icon-bar"></span>
-                </button>
-                <a class="navbar-brand" href="#">Brand</a>
+                <a class="navbar-brand" href="{{ route('welcome') }}"><span class="logo-1">tech</span><span class="logo-2">'</span><span class="logo-3">IT</span> <span class="logo-4">easy</span></a>
             </div>
-            <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
-                <ul class="nav navbar-nav">
-                    <li class="active"><a href="#">Link <span class="sr-only">(current)</span></a></li>
-                    <li><a href="#">Link</a></li>
-            </div><!-- /.navbar-collapse -->
-        </div><!-- /.container-fluid -->
+            
+                @if(Auth::check())
+                    <div class="collapse navbar-collapse navbar-right">
+                        <a href="{{ route('dashboard') }}"class="btn btn-default navbar-btn"><span>{{ Auth::user()->login }}</span> <i class="fa fa-unlock-alt"></i></a>
+                        <a href="{{ url('auth/logout') }}"class="btn btn-default navbar-btn "><i class="fa fa-power-off" title="Déconnection"></i></a>
+                    </div>
+                @else
+                    <div class="collapse navbar-collapse navbar-right">
+                        <a href="{{ route('login') }}"class="btn btn-default navbar-btn"><span>Admin</span> <i class="fa fa-lock"></i></a>
+                    </div>
+                @endif
+            </div>
+        </div>
     </nav>
-
 </div>

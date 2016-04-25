@@ -1,9 +1,11 @@
 <!DOCTYPE html>
 <html>
     <head>
-        <title>Tech'IT easy - @yield('title')</title>
+        <title>tech'IT easy - @yield('title')</title>
         <link href="https://fonts.googleapis.com/css?family=Lato:100" rel="stylesheet" type="text/css">
+        <link href='https://fonts.googleapis.com/css?family=Roboto' rel='stylesheet' type='text/css'>
         {!! Html::style('assets/css/bootstrap.min.css') !!}
+        {!! Html::style('assets/css/font-awesome.min.css') !!}
         {!! Html::style('assets/css/app.css') !!}
     </head>
     <body>
