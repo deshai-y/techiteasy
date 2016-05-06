@@ -47,8 +47,8 @@ class HomeController extends Controller
 
         $aQuestionnaire = array();
         $questions = DB::table('question as q')
-                ->select('question_id', 'q.label as question_label' , 'q.description as description_label', 'a.label as answer_label', 'a.id as answer_id', 'a.verify as verify')
-                ->join('questionnaire_has_category as qhc', 'qhc.category_id', '=', 'q.category_id')
+                ->select('a.question_id', 'q.label as question_label' , 'q.description as description_label', 'a.label as answer_label', 'a.id as answer_id', 'a.verify as verify')
+                ->join('questionnaire_has_question as qhc', 'qhc.question_id', '=', 'q.id')
                 ->join('answer as a', 'a.question_id', '=', 'q.id')
                 ->where('qhc.questionnaire_id', $id)
                 ->get();
