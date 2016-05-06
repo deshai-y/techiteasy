@@ -14,8 +14,14 @@ class QuestionTableSeeder extends Seeder {
                 array('name' => 'Front-end')
         );
 
+        DB::table('level')->insert(array(
+            array('id' => 1, 'label' => 'Débutant'),
+            array('id' => 2, 'label' => 'Intermédaire'),
+            array('id' => 3, 'label' => 'Difficile')
+        ));
+
         $question_id = DB::table('question')->insertGetId(
-                array('level' => '1', 'label' => 'Qu\'est ce qu\'une fonction anonyme ?', 'description' => 'Question basique concernant le JavaScript', 'category_id' => $category_id)
+                array('level_id' => '1', 'label' => 'Qu\'est ce qu\'une fonction anonyme ?', 'description' => 'Question basique concernant le JavaScript', 'category_id' => $category_id)
         );
 
         DB::table('answer')->insert(array(
@@ -27,7 +33,7 @@ class QuestionTableSeeder extends Seeder {
 
 
         $question_id = DB::table('question')->insertGetId(
-                array('level' => '1', 'label' => 'Quelle version d\'ecmascript est sorti en juin 2015 ?', 'description' => 'Question basique concernant le JavaScript', 'category_id' => $category_id)
+                array('level_id' => '1', 'label' => 'Quelle version d\'ecmascript est sorti en juin 2015 ?', 'description' => 'Question basique concernant le JavaScript', 'category_id' => $category_id)
         );
 
         DB::table('answer')->insert(array(
@@ -42,7 +48,7 @@ class QuestionTableSeeder extends Seeder {
         );
 
         $question_id = DB::table('question')->insertGetId(
-                array('level' => '1', 'label' => 'Quelle fonction permet de lire le résultat d\'une ressources MySQL renvoyée par mysql_query() ?', 'description' => 'Question basique concernant du back-end au niveau SQL', 'category_id' => $category_id)
+                array('level_id' => '1', 'label' => 'Quelle fonction permet de lire le résultat d\'une ressources MySQL renvoyée par mysql_query() ?', 'description' => 'Question basique concernant du back-end au niveau SQL', 'category_id' => $category_id)
         );
 
         DB::table('answer')->insert(array(
@@ -56,7 +62,7 @@ class QuestionTableSeeder extends Seeder {
         );
 
         $question_id = DB::table('question')->insertGetId(
-                array('level' => '2', 'label' => 'Quelle unité n\'a pas été introduite dans CSS3 ?', 'description' => 'Question concernant les unités en CSS', 'category_id' => $category_id)
+                array('level_id' => '2', 'label' => 'Quelle unité n\'a pas été introduite dans CSS3 ?', 'description' => 'Question concernant les unités en CSS', 'category_id' => $category_id)
         );
 
         DB::table('answer')->insert(array(

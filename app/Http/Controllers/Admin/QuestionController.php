@@ -11,6 +11,8 @@ use App\Models\Category;
 use DB;
 use Validator;
 
+use App\Models\Level;
+
 class QuestionController extends Controller {
 
     /**
@@ -21,8 +23,9 @@ class QuestionController extends Controller {
     public function index() {
         $page = 'question';
         $questions = DB::table('question')
-                ->select('question.id', 'level', 'label', 'description', 'name')
+                ->select('question.id', 'level.label as level', 'question.label', 'description', 'name')
                 ->join('category', 'question.category_id', '=', 'category.id')
+                ->join('level', 'question.level_id', '=', 'level.id')
                 ->get();
         return view('admin.question', compact('page', 'questions'));
     }
@@ -38,7 +41,7 @@ class QuestionController extends Controller {
         
         $cats = DB::table('category')
                 ->get();
-        $difficulties = array("1" => "Débutant", "2" => "Intermédiare", "3" => "Difficile");
+        $difficulties = Level::get()->lists('label', 'id')->toArray();
         $categories = [];
         foreach ($cats as $cat) {
             $categories[$cat->id] = $cat->name;
@@ -178,7 +181,7 @@ class QuestionController extends Controller {
         $question->category_id = $request->input('categories');
         $question->label = $request->input('description');
         $question->description = $request->input('question');
-        $question->level = $request->input('difficulties');
+        $question->level_id = $request->input('difficulties');
         
         //we save
         $question->save();

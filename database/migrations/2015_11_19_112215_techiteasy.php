@@ -19,6 +19,11 @@ class Techiteasy extends Migration {
             $table->timestamps();
         });
 
+        Schema::create('level', function (Blueprint $table) {
+            $table->increments('id');
+            $table->string('label');
+        });
+
         Schema::create('questionnaire', function (Blueprint $table) {
             $table->increments('id');
             $table->string('title', '45');
@@ -31,11 +36,12 @@ class Techiteasy extends Migration {
 
         Schema::create('question', function (Blueprint $table) {
             $table->increments('id');
-            $table->integer('level');
+            $table->integer('level_id')->unsigned();
             $table->string('label');
             $table->string('description');
             $table->integer('category_id')->unsigned();
             $table->foreign('category_id')->references('id')->on('category');
+            $table->foreign('level_id')->references('id')->on('level');
         });
 
         Schema::create('answer', function (Blueprint $table) {
