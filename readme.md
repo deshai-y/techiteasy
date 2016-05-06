@@ -11,6 +11,17 @@ Server Requirements
 * Tokenizer PHP Extension
 * MySQL
 
+Pré Requis
+============
+for Windows User
+-----------
+
+Install :
+- wampserver (or other WAMP plateform)
+- gitbash
+- node.js
+
+
 Installation
 =============
 
@@ -68,6 +79,8 @@ APP_DEBUG=true
 
 ### Configure Database
 
+if you are a windows user, execute mysql into mysql directory
+
 Create your local database
 ```
 #!sql
@@ -80,11 +93,15 @@ DB_HOST=127.0.0.1
 DB_PORT=3306
 DB_DATABASE=techiteasy
 DB_USERNAME=root
-DB_PASSWORD=root
+DB_PASSWORD=root (or other, for example, on wampserver, there is no password)
 ```
 Then run the database migration with the command `php artisan migrate`
 
 Last step run the seed of the database with `php artisan db:seed`
+
+```
+php artisan key:generate
+```
 
 Informations
 -------------
