@@ -13,9 +13,9 @@
 <div class="row">
 	<div class="col-md-12">
 	@if($questionnaire->id)
-		<h2>Modifier la questionnaire "<i>{{ $questionnaire->title}}</i>"</h2>
+		<h2>Modifier le questionnaire "<i>{{ $questionnaire->title}}</i>"</h2>
 	@else
-		<h2>Ajouter une Questionnaire</h2>
+		<h2>Ajouter un Questionnaire</h2>
 	@endif
 	</div>
 </div>

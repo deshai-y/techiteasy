@@ -29,7 +29,7 @@
     </tbody>
 </table>
 <div>
-    <a href="{!! route('admin.questionnaire.create') !!}" class="btn btn-extia pull-right">Ajouter une questionnaire</a>
+    <a href="{!! route('admin.questionnaire.create') !!}" class="btn btn-extia pull-right">Ajouter un questionnaire</a>
 </div>
 
 @endsection

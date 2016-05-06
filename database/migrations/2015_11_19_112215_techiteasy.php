@@ -43,7 +43,7 @@ class Techiteasy extends Migration {
             $table->string('label');
             $table->boolean('verify');
             $table->integer('question_id')->unsigned();
-            $table->foreign('question_id')->references('id')->on('question');
+            $table->foreign('question_id')->references('id')->on('question')->onDelete('cascade');
         });
 
         Schema::create('questionnaire_has_question', function (Blueprint $table) {
