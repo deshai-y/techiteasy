@@ -12,6 +12,8 @@ use App\Http\Controllers\Controller;
 
 use App\Models\Questionnaire;
 use App\Models\Category;
+use App\Models\Question;
+use App\Models\QuestionnaireHasQuestion;
 
 class QuestionnaireController extends Controller
 {
@@ -39,7 +41,7 @@ class QuestionnaireController extends Controller
         $page     = 'questionnaire';
         $questionnaire = new Questionnaire;
 
-        $categories = Category::paginate(8);
+        $categories = Category::get()->lists('name','id')->toArray();
 
         return view('admin.questionnaire-create-update', compact('page', 'questionnaire', 'categories'));
     }
@@ -54,30 +56,11 @@ class QuestionnaireController extends Controller
         $page     = 'questionnaire';
         $questionnaire = questionnaire::findOrFail($id);
 
-        $categories = Category::paginate(8);
+        $categories = Category::get()->lists('name','id')->toArray();
 
-        $categoriesInQuestionnaire = DB::table('questionnaire_has_category')
-                ->select('category_id')
-                ->where('questionnaire_id', '=', $id)
-                ->get();
-       
+        $questions = implode(',',QuestionnaireHasQuestion::where('questionnaire_id', '=', $id)->get()->lists('question_id', 'question_id')->toArray());
 
-        
-        $categoriesInQuestionnaire =  $this->object_to_array($categoriesInQuestionnaire);
-      
-
-        foreach ($categories as &$cat) {
-            $result = array_search($cat->id, array_column($categoriesInQuestionnaire, 'category_id'));
-            if(is_numeric($result)){
-                 $cat->checked = true;
-            }
-            else{
-                $cat->checked = 0;
-            }
-
-        }
-        
-        return view('admin.questionnaire-create-update', compact('page', 'questionnaire', 'categories'));
+        return view('admin.questionnaire-create-update', compact('page', 'questionnaire', 'categories', 'questions'));
     }
 
     /**
@@ -98,20 +81,23 @@ class QuestionnaireController extends Controller
         $questionnaire->save();
 
 
-        DB::table('questionnaire_has_category')->where('questionnaire_id', '=', $id)->delete();
-        
-        foreach($request->input('category_valide')  as  $val) {
-             DB::table('questionnaire_has_category')->insert(
-            array('questionnaire_id' => $id, 'category_id' => $val)
-            );         
-        }
+        QuestionnaireHasQuestion::where('questionnaire_id', '=', $id)->delete();
 
-       
+        $this->saveQuestion(json_decode($request->input('listcheck')), $id);
 
         return redirect()
                 ->route('admin.questionnaire.index')
                 ->withSuccess('Le questionnaire a bien été modifiée.');
     }
+
+    protected function saveQuestion($list, $id) {
+        foreach($list  as  $val) {
+            DB::table('questionnaire_has_question')->insert(
+                array('questionnaire_id' => $id, 'question_id' => $val)
+            );
+        }
+    }
+
      /**
      * Store a newly created resource in storage.
      *
@@ -124,26 +110,26 @@ class QuestionnaireController extends Controller
             $idQuestionnaire = DB::table('questionnaire')->insertGetId(
                     ['title' => $request->input('title')]);
 
-             foreach($request->input('category_valide')  as  $val) {
-             DB::table('questionnaire_has_category')->insert(
-            array('questionnaire_id' => $idQuestionnaire, 'category_id' => $val)
-            );         
-        }
+            $this->saveQuestion(json_decode($request->input('listcheck')), $idQuestionnaire);
 
             return redirect(route('admin.questionnaire.index'));
         }
     }
-    protected function object_to_array($obj) {
-        if(is_object($obj)) $obj = (array) $obj;
-        if(is_array($obj)) {
-            $new = array();
-            foreach($obj as $key => $val) {
-                $new[$key] = $this->object_to_array($val);
-            }
-        }
-        else $new = $obj;
 
-        return $new;       
+    public function listquestion($id) {
+        return response()->json(['response' => Question::select('question.id', 'level.label as level', 'question.label', 'description')
+            ->where('category_id', '=', $id)->join('level', 'question.level_id', '=', 'level.id')->get()]);
+    }
+
+    public function destroy($id)
+    {
+        DB::table('questionnaire_has_question')->where('question_id', '=', $id)->delete();
+        DB::table('questionnaire')->where('id', '=', $id)->delete();
+
+
+        return redirect()
+            ->route('admin.questionnaire.index')
+            ->withSuccess('Le questionnaire a été supprimé.');
     }
 
 }

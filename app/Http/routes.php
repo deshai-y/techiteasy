@@ -59,6 +59,10 @@ Route::group(['prefix' => 'admin', 'middleware' => 'auth'], function () {
     Route::resource('reponse', 'Admin\ReponseController');
     Route::resource('questionnaire', 'Admin\QuestionnaireController');
 
+    Route::get('questionnaire/listquestion/{id_category}', [
+        'as' => 'listquestion', 'uses' => 'Admin\QuestionnaireController@listquestion'
+    ]);
+
     Route::post('question/{id}/test', 'Admin\QuestionController@testQuestion');
 });
 
