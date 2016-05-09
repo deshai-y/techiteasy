@@ -11,9 +11,9 @@ Server Requirements
 * Tokenizer PHP Extension
 * MySQL
 
-Pré Requis
+Requirements
 ============
-for Windows User
+for Windows Users
 -----------
 
 Install :
@@ -21,6 +21,15 @@ Install :
 - gitbash
 - node.js
 
+============
+for Mac Users
+-----------
+
+Install
+
+- mawpserver (https://www.mamp.info/en/downloads/)
+- homebrew (http://brew.sh/)
+- node.js (in a terminal prompt type : brew install node.js)
 
 Installation
 =============
