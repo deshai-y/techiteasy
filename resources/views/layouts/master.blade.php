@@ -23,8 +23,8 @@
         {!! Html::script('assets/noty-2.3.8/js/noty/themes/bootstrap.js') !!}
         {!! Html::script('assets/js/noty.js') !!}
 
-        <script type="text/javascript">
-            @yield('script')
-        </script>
+
+        @yield('script')
+
     </body>
 </html>

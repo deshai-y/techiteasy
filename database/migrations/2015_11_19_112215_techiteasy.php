@@ -22,6 +22,7 @@ class Techiteasy extends Migration {
         Schema::create('level', function (Blueprint $table) {
             $table->increments('id');
             $table->string('label');
+            $table->integer('point');
         });
 
         Schema::create('questionnaire', function (Blueprint $table) {

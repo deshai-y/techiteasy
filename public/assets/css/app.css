@@ -181,3 +181,22 @@ body {
 .odd {
   background-color : #f5f5f5;
 }
+
+#answer_list li {
+  list-style-type: none;
+}
+
+.first_column {
+  width:65%;
+  float:left;
+}
+
+.second_column {
+  width:35%;
+  float:left;
+}
+
+.lineTotal {
+  min-height:5px;
+  background-color:#ef6b00;
+}

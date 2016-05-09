@@ -10,6 +10,11 @@ use App\Http\Requests;
 
 use Mail;
 use Config;
+use Session;
+use Response;
+
+use App\Models\Question;
+use App\Models\Answer;
 
 
 class HomeController extends Controller
@@ -37,82 +42,104 @@ class HomeController extends Controller
         return redirect()->route('index');
     }
     public function index(){
-         $questionnaires = Questionnaire::paginate(5);
+        $questionnaires = Questionnaire::paginate(5);
 
         return view('index', compact('page', 'questionnaires')); // May use compact
 
         //display questionnaires list        
     }
     public function launch($id){
+        Session::put('results', []);
 
-        $aQuestionnaire = array();
-        $questions = DB::table('question as q')
-                ->select('a.question_id', 'q.label as question_label' , 'q.description as description_label', 'a.label as answer_label', 'a.id as answer_id', 'a.verify as verify')
-                ->join('questionnaire_has_question as qhc', 'qhc.question_id', '=', 'q.id')
-                ->join('answer as a', 'a.question_id', '=', 'q.id')
-                ->where('qhc.questionnaire_id', $id)
-                ->get();
+        $questions = Question::select('qhc.question_id', 'label as question_label' , 'description as description_label')
+            ->join('questionnaire_has_question as qhc', 'qhc.question_id', '=', 'id')
+            ->where('qhc.questionnaire_id', $id)
+            ->get()->toArray();
 
-        $answers = [];
-        foreach ($questions as $key => $value) {
-            $aQuestionnaire[$value->question_id] = [
-                "questionnaire_id" =>  $id,
-                "id"=>$value->question_id,
-                "label"=>$value->question_label ,
-                "description"=>$value->description_label,
-            ];
+        Session::put('questions', $questions);
+        Session::put('questions_total', count($questions));
 
-            if(!isset($answers[$value->question_id]))
-                $answers[$value->question_id] = [];
+        $question = $this->nextQuestion();
 
-            $answers[$value->question_id][] = ['label'=>$value->answer_label, 'id'=>$value->answer_id, "verify"=>$value->verify ];
-            # code...
-        }
-
-         return view('launch', compact('aQuestionnaire', 'answers')); // May use compact
+        return view('launch', [
+            'question' => $question,
+            'answers' => Answer::where('question_id', '=', $question['question_id'])->get()->lists('label', 'id'),
+            'questionnaire_id' => $id
+            ]
+        );
     }
 
-    public function valider(Request $request){
+    protected function nextQuestion() {
+        $r = Session::get('questions');
+        $s = array_shift($r);
 
-         if($request->has("questionnaire_id"))
-         {
-             $answers = DB::table('answer')
-                ->select('answer.*')
-                ->join('question', 'answer.question_id', '=', 'question.id')
-                ->join('questionnaire_has_category', 'questionnaire_has_category.category_id', '=', 'question.category_id')              
-                ->where('questionnaire_has_category.questionnaire_id', $request->input("questionnaire_id"))
-                ->get();
-        
+        Session::put('questions', $r);
 
-            $iCorrect= 0;
-            $iKO=0;
-            foreach ($answers as $key => $value) {
+        return $s;
+    }
 
-               if($request->has($value->id)){
-                    if($request->get($value->id) == $value->verify)
-                        $iCorrect++;
-                    else{
-                        $iKO++;
-                    }
+    public function next(Request $request) {
+        $this->result($request->all());
+
+        $question = $this->nextQuestion();
+
+        $end = 0;
+        if($question == null)
+            $end = 1;
+
+        return Response::json([
+            'question' => $question,
+            'answers' => Answer::where('question_id', '=', $question['question_id'])->get()->lists('label', 'id'),
+            'end' => $end,
+            'total' => count(session('results')) / session('questions_total') * 100
+        ]);
+
+    }
+
+    protected function result($res) {
+        if(Session::has('results')) {
+            $r = Session::get('results');
+        }
+
+        $answers = json_decode($res['answer'], true);
+
+        $r[] = ['id_question' => $res['question'], 'answer' => $answers];
+
+        Session::put('results', $r);
+    }
+
+    public function valider($id){
+        $results = session('results');
+
+        $total = 0;
+        foreach($results as $ans) {
+            $answers = Answer::where('question_id', '=', $ans['id_question'])->get()->lists('verify', 'id')->toArray();
+            $questionPoint = Question::join('level', 'level.id', '=', 'question.level_id')->select('point')->first()->point;
+
+            foreach($ans['answer'] as $value) {
+
+                if(!isset($answers[$value]) || $answers[$value] == 0) {
+                    $questionPoint--;
                 }
             }
 
-             $subject = "Résultat du questionnaire du candidat: ".session('lastName')." ".session('firstName');
-             $message = $iCorrect. " réponses correctes, et ".$iKO." réponses incorrectes.";
+            if($questionPoint < 0) $questionPoint = 0;
 
-             Mail::send('emails.mail', ['body' => $message], function ($m) use ($subject) {
-                 $m->from(Config::get('mail.from'), 'teachiteasy');
-
-                 $m->to(session('email'))->subject($subject);
-             });
-
-            return redirect()->route('welcome');
+            $total += $questionPoint;
         }
-        else
-        {
-            //probleme lors du traitment
-            return redirect()->route('index');
-        }       
+
+
+        $subject = "Résultat du questionnaire du candidat: ".session('lastName')." ".session('firstName');
+        $message = "il a obtenue : ".$total." point(s)";
+
+        Mail::send('emails.mail', ['body' => $message], function ($m) use ($subject) {
+            $m->from(Config::get('mail.from'), 'teachiteasy');
+
+            $m->to(session('email'))->subject($subject);
+        });
+
+        return redirect()->route('welcome');
+
     }
 
 }
